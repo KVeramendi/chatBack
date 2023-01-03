@@ -1,0 +1,12 @@
+const express = require('express');
+const routes = require('./routes');
+const {error404Handler,errorHandler} = require('./middleware');
+require('dotenv').config();
+require('./services/mongoDB/config').dbConnection();
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
+app.use('/api',routes);
+app.use(error404Handler);
+app.use(errorHandler);
+module.exports = app;
