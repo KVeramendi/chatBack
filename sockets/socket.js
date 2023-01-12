@@ -1,4 +1,5 @@
 const { io } = require('../bin/www');
+const { verifyToken } = require('../helpers/jwt');
 const {userConnect,userDisconnect} = require('./socketController');
 
 io.on('connection', client => {
