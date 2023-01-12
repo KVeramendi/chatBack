@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 
-exports.signin = async(request,response) => {
+exports.signup = async(request,response) => {
     const userData = request.body;
     const userExist = await userDao.findUserByEmail(userData.email);
     if(userExist){
