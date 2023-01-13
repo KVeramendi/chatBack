@@ -3,6 +3,7 @@ const user = (data) => ({
     email:data.email,
     firstName:data.firstName,
     lastName:data.lastName,
+    online:data.online
 });
 
 const authData = (token,expiresIn) => ({

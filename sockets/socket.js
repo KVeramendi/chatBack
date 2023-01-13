@@ -5,15 +5,19 @@ const {userConnect,userDisconnect} = require('./socketController');
 io.on('connection', client => {
     const [valid,user] = verifyToken(client.handshake.headers['auth']);
 
+    
     if(!valid){return client.disconnect();}
+    
+    userConnect(user.id);
+    console.log("Un nuevo cliente se ha conectado!");
 
-    userConnect(user._id);
-
-    client.join(user._id);
-
+    client.join(user.id);
+    client.on('getRoom', (payload) => {
+        console.log(payload);
+    });
 
     client.on('disconnect', () => {
-        userDisconnect(user._id)
+        userDisconnect(user.id)
         console.log('Cliente desconectado');
     });
 

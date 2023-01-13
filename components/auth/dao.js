@@ -25,6 +25,17 @@ exports.viewUser = async(id) => {
     );
 }
 
+exports.findUserByName = async(name) => {
+    return new Promise(
+        (resolve,reject)=>User
+        .find({firstName:{$regex:name,$options:"i"}})
+        .exec((err,doc)=>{
+            if(err) return reject(err);
+            return resolve(doc);
+        })
+    );
+}
+
 exports.viewAllUser = async(id) => {
     return new Promise(
         (resolve,reject)=>User

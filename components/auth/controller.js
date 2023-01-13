@@ -74,3 +74,9 @@ exports.refreshToken = async(request,response) => {
 
     return response.send(userDto.authData(jwToken,process.env.EXPIRATION));
 }
+
+exports.findUserByName = async(request,response) => {
+    const name = request.params.name;
+    const users = await userDao.findUserByName(name);
+    return response.send(userDto.userList(users));
+}
