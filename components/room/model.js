@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const messageSchema = new mongoose.Schema({
+const roomSchema = new mongoose.Schema({
     accept:{
         type:Schema.Types.ObjectId,
-        ref:'Auth',
+        ref:'User',
         required:true
     },
     invite:{
         type:Schema.Types.ObjectId,
-        ref:'Auth',
+        ref:'User',
         required:true
     },
     lastMessage:{
@@ -22,4 +22,4 @@ const messageSchema = new mongoose.Schema({
     }
 },{timestamps:true});
 
-module.exports = mongoose.model('Message',messageSchema);
+module.exports = mongoose.model('Room',roomSchema);
